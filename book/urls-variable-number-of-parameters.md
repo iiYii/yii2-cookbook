@@ -1,14 +1,14 @@
-URLs with variable number of parameters
+[URL 变量参数的数量](https://github.com/iiYii/yii2-cookbook/edit/gh-pages/book/urls-variable-number-of-parameters.md)
 =======================================
 
 There are many cases when you need to get variable number of parameters via URL.
 For example one may want URLs such as `http://example.com/products/cars/sport` to lead to `ProductController::actionCategory`
 where it's expected to get an array containing `cars` and `sport`.
 
-Get Ready
+做好准备
 ---------
 
-First of all, we need to enable pretty URLs. In the application config file add the following:
+首先，我们需要启用漂亮的 URL。在应用程序配置文件中添加以下:
 
 ```php
 $config = [

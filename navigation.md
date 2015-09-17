@@ -1,6 +1,5 @@
-# Yii 2.0 Cookbook 中文翻译
+# Yii2 CookBook
 
-[首页](index.md)
 [前言](/book/preface.md)
 [基础知识]()
 
@@ -54,14 +53,14 @@
   * # 使用修饰符（decorators）
   * # 什么时候使用小部件
 
-[Active Record（活动记录）]()
+[Active Record]()
 
   * # 一对多，属于关系
   * # 同时使用 SQL 和 noSQL
   * # 保存相关模型
   * [单表继承](/book/ar-single-table-inheritance.md)
 
-[i18n（国际化）]()
+[i18n]()
 
   * # 一般的最佳实践
   * [选择应用程序语言](/book/i18n-selecting-application-language.md)

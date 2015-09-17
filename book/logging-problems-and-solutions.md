@@ -1,15 +1,13 @@
-Logging: problems and solutions
+[日志：问题和解决方案](https://github.com/iiYii/yii2-cookbook/edit/gh-pages/book/logging-problems-and-solutions.md)
 ===============================
 
-Logging in Yii is really flexible. Basics are easy but sometimes it takes time to configure
-everything to get what you want. There are some ready to use solutions collected below.
-Hopefully you'll find what you're looking for.
 
-Write 404 to file and send the rest via email
+Yii 中的日志是非常灵活的。基础知识很简单但有时需要时间配置得到你想要的一切。下面有收集了一些准备使用解决方案。希望你会找到你所要找的。
+
+写404文件和发送通过电子邮件
 ---------------------------------------------
 
-404 not found happens too often to email about it. Still, having 404s logged to a file could be
-useful. Let's implement it.
+是说404发生了太多次，导致已经不能通过邮件通知你了，只好写入文件。让我们实现它。
 
 
 ```php

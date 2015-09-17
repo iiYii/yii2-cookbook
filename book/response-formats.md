@@ -1,4 +1,4 @@
-Working with different response types
+[使用不同的反应类型]((https://github.com/iiYii/yii2-cookbook/edit/gh-pages/book/response-formats.md))
 =====================================
 
 Web and mobile applications are more than just rendered HTML nowadays.
