@@ -1,4 +1,4 @@
-Managing cookies
+管理 cookies
 ================
 
 Managing HTTP cookies isn't that hard using plain PHP but Yii makes it a bit more convenient. In this recipe we'll describe how to perform typical cookie actions.
