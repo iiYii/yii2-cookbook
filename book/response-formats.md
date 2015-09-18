@@ -1,14 +1,13 @@
-[使用不同的反应类型]((https://github.com/iiYii/yii2-cookbook/edit/gh-pages/book/response-formats.md))
+使用不同的响应类型
 =====================================
 
-Web and mobile applications are more than just rendered HTML nowadays.
-Modern architecture moves the UI to the client, where all user interactions are handled by the client-side, utilizing server APIs to drive the frontend.
-The JSON and XML formats are often used for serializing and transmitting structured data over a network, so the ability to create such responses is a must for any modern server framework.
+Web 和移动应用程序现在不仅仅只是用来呈现 HTML。
+现在开发一个移动客户端，利用服务器 api 驱动前端，所有的用户交互都在客户端哪里。JSON 和 XML 格式通常用于序列化和传输结构化数据通过网络，所以能够创建这样的响应是任何一个现代服务器框架的必备。
 
-Response formats
+响应格式
 ----------------
 
-As you probably know, in Yii2 you need to `return` the result from your action, instead of echoing it directly:
+正如你可能知道的，在 Yii2 中需要从你的 action `return` 结果，而不是直接回应:
 
 ```php
 // returning HTML result
@@ -17,19 +16,20 @@ return $this->render('index', [
 ]);
 ```
 
-Good thing about it is now you can return different types of data from your action, namely:
+好事是现在你可以从你的 action 直接返回不同类型的数据，即:
 
-- an array
-- an object implementing `Arrayable` interface
-- a string
-- an object implementing `__toString()` method.
+- 数组
+- 一个实现 `Arrayable` 接口的对象
+- 一个字符串
+- 一个实现 `__toString()` 方法的对象。
 
-Just don't forget to tell Yii what format do you want as result, by setting `\Yii::$app->response->format` before `return`. For example:
+只是别忘了告诉 Yii 做什么你想要的结果的格式，在 `return` 之前设置 `\Yii::$app->response->format`。例如：
+
 ```php
 \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 ```
 
-Valid formats are:
+有效的格式:
 
 - FORMAT_RAW
 - FORMAT_HTML
@@ -37,12 +37,12 @@ Valid formats are:
 - FORMAT_JSONP
 - FORMAT_XML
 
-Default is `FORMAT_HTML`.
+默认是 `FORMAT_HTML`.
 
-JSON response
+JSON 响应
 -------------
 
-Let's return an array:
+让我们返回一个数组：
 
 ```php
 public function actionIndex()
@@ -53,9 +53,10 @@ public function actionIndex()
 }
 ```
 
-And - voila! - we have JSON response right out of the box:
+瞧!——我们的 JSON 响应框：
 
-**Result**
+**结果**
+
 ```
 {
     "0": "some",
@@ -65,9 +66,9 @@ And - voila! - we have JSON response right out of the box:
 }
 ```
 
-**Note**: you'll get an exception if response format is not set.
+Note: 你会得到一个异常，如果没有设置响应格式。
 
-As we already know, we can return objects too.
+我们已经知道，我们也可以返回对象。
 
 ```php
 public function actionView($id)
@@ -78,9 +79,10 @@ public function actionView($id)
 }
 ```
 
-Now $user is an instance of `ActiveRecord` class that implements `Arrayable` interface, so it can be easily converted to JSON:
+现在 $user 是  实现 Arrayable 接口的类 ActiveRecord 的实例，所以它可以很容易地转换为 JSON：
 
-**Result**
+**结果**
+
 ```
 {
     "id": 1,
@@ -89,7 +91,7 @@ Now $user is an instance of `ActiveRecord` class that implements `Arrayable` int
 }
 ```
 
-We can even return an array of objects:
+我们甚至可以返回一个对象数组：
 
 ```php
 public function actionIndex()
@@ -100,9 +102,10 @@ public function actionIndex()
 }
 ```
 
-Now `$users` is an array of ActiveRecord objects, but under the hood Yii uses `\yii\helpers\Json::encode()` that traverses and converts the passed data, taking care of types by itself:
+现在 `$users `是 ActiveRecord 对象数组，但是在下面 Yii 使用 `\yii\helpers\Json::encode()` 遍历数据传递和转换，照顾类型本身:
 
-**Result**
+**结果**
+
 ```
 [
     {
@@ -119,10 +122,11 @@ Now `$users` is an array of ActiveRecord objects, but under the hood Yii uses `\
 ]
 ```
 
-XML response
+XML 响应
 ------------
 
-Just change response format to `FORMAT_XML` and that't it. Now you have XML:
+响应格式改为 FORMAT_XML 这样。现在你有了 XML：
+
 ```php
 public function actionIndex()
 {
@@ -132,7 +136,8 @@ public function actionIndex()
 }
 ```
 
-**Result**
+**结果**
+
 ```xml
 <response>
     <item>some</item>
@@ -145,7 +150,8 @@ public function actionIndex()
 </response>
 ```
 
-And yes, we can convert objects and array of objects the same way as we did before.
+是的，我们可以跟我们之前做的一样转换对象和数组的对象。
+
 ```php
 public function actionIndex()
 {
@@ -154,7 +160,9 @@ public function actionIndex()
     return $users;
 }
 ```
-**Result:**
+
+**结果**
+
 ```xml
 <response>
     <User>
@@ -170,12 +178,11 @@ public function actionIndex()
 </response>
 ```
 
-Custom response format
+自定义响应格式
 ----------------------
 
-Let's create a custom response format. To make example a bit fun and crazy we'll respond with PHP arrays.
-
-First of all, we need formatter itself. Create `components/PhpArrayFormatter.php`:
+让我们创建一个定制的响应格式。例子做点有趣和疯狂的事我回应 PHP 数组。
+首先，我们需要格式化程序本身。创建 `components/PhpArrayFormatter.php`：
 
 ```php
 <?php
@@ -196,7 +203,7 @@ class PhpArrayFormatter implements ResponseFormatterInterface
 }
 ```
 
-Now we need to registed it in application config (usually it's `config/web.php`):
+现在我们需要在注册应用程序配置 (通常是 `config/web.php`):
 
 ```php
 return [
@@ -212,7 +219,7 @@ return [
 ];
 ```
 
-Now it's ready to be used. In `controllers/SiteController` create a new method `actionTest`:
+现在是准备使用。在 `controllers/SiteController` 创建一个新的方法 `actionTest`:
 
 ```php
 public function actionTest()
@@ -224,7 +231,7 @@ public function actionTest()
 }
 ```
 
-That's it. After executing it, Yii will respond with the following:
+就是这样。执行后，Yii 将回应以下:
 
 ```php
 <?php
