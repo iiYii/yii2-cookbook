@@ -1,6 +1,9 @@
 Table of Contents
 =================
 
+Preface
+----------------
+
 - [Preface](preface.md)
 
 Unnoticed basics
